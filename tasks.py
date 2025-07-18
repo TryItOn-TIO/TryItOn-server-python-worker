@@ -77,6 +77,7 @@ def process_tryon_request(task_args: dict):
     userId = task_args.get("userId")
     garmentType = task_args.get("garmentType")
     productId = task_args.get("productId") 
+    cacheKey = task_args.get("cacheKey")
 
     print(f"WORKER: /tryon 작업 시작. UserID: {userId}, ProductID: {productId}")
     try:
@@ -92,7 +93,8 @@ def process_tryon_request(task_args: dict):
             pose_image=pose_image
         )
         
-        result_key = f"cache/tryon/{userId}/{garmentType}-{productId}.png"
+        # result_key = f"cache/tryon/{userId}/{garmentType}-{productId}.png"
+        result_key = cacheKey
         result_url = s3_handler.upload_pil_image_to_s3(result_image, result_key)
         
         # [수정] payload에서 불필요한 필드 제거, Celery 결과 포맷에 맞게 조정
