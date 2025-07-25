@@ -5,12 +5,20 @@ git clone https://github.com/BoyuanJiang/FitDiT.git
 
 ## Fitdit 모델 clone
 ```
-# Git LFS 활성화 (시스템에 따라 최초 한 번만 실행)
-sudo apt-get install git-lfs
+# 1. 모델들을 담을 부모 폴더 생성
+mkdir -p models
+
+# 2. Git-LFS 활성화
 git lfs install
 
-# Hugging Face 저장소에서 모델 파일을 'local_model_dir' 폴더로 다운로드
-git clone https://huggingface.co/BoyuanJiang/FitDiT models
+# 3. FitDiT 메인 모델 다운로드
+git clone https://huggingface.co/BoyuanJiang/FitDiT models/FitDiT
+
+# 4. CLIP-L 모델 다운로드
+git clone https://huggingface.co/openai/clip-vit-large-patch14 models/clip-vit-large-patch14
+
+# 5. CLIP-bigG 모델 다운로드
+git clone https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k models/CLIP-ViT-bigG-14-laion2B-39B-b160k
 ```
 
 ## docker 빌드
